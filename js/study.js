@@ -9,7 +9,7 @@
    - knows which version this site is (STUDY_CONFIG in index.html)
    - gives every new participant the same clean start (forgets anything an earlier participant saved).
      A page refresh keeps their progress.
-   - in Version B, Rachel's documents are already uploaded, the same as her document vault in Version A
+   - Rachel's documents are already uploaded in both versions
    - starts a timer
    - keeps the participant on the apply page (other links are switched off)
    - after "Submit application", opens submitted.html with the version and time in the address,
@@ -61,6 +61,7 @@ STUDY.finish = function (ev, form) {
     var h = a.getAttribute("href") || "";
     if (/^submitted\.html/.test(h) || h.charAt(0) === "#") { return; }
     e.preventDefault(); e.stopPropagation();
-    if (window.BB && BB.toast) { BB.toast("This test only covers applying for the booth."); }
+    var end = /submitted\.html$/.test(location.pathname);
+    if (window.BB && BB.toast) { BB.toast(end ? "The test ends here. Please go back to the study window." : "This test only covers applying for the booth."); }
   }, true);
 })();
